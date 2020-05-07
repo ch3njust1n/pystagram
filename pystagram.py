@@ -1,3 +1,10 @@
+'''
+Author: Justin Chen
+Date: 5.7.2020
+
+API for downloading Instagram videos
+
+'''
 import requests
 import urllib
 import os
