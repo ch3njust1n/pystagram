@@ -37,10 +37,10 @@ class Instagram(object):
     Downloads Instagram video
 
     inputs:
-    dest     (str, optional) Save destination
+    dest     (str, optional) Save destination. Defaults to current working directory.
     filename (str, optional) Save filename
     '''
-    def download(self, dest='/home', filename=''):
+    def download(self, dest='', filename=''):
         try:
             resp = requests.get(os.path.join(self.url, '?__a=1'))
             resp.raise_for_status()
@@ -63,6 +63,9 @@ class Instagram(object):
             raise Exception(e)
 
         self.title = time_stamp if len(filename) == 0 else filename
+
+        if len(dest) == 0:
+            dest = os.getcwd()
 
         save_path = os.path.join(dest, f'{self.title}.mp4')
 
