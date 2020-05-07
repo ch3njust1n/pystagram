@@ -3,11 +3,11 @@ Author: Justin Chen
 Date: 5.7.2020
 
 API for downloading Instagram videos
-
 '''
 import requests
 import urllib
 import os
+import re
 
 class Instagram(object):
     '''
@@ -15,8 +15,23 @@ class Instagram(object):
     url (str) URL to video e.g. https://www.instagram.com/p/BSVHktjDn5m/
     '''
     def __init__(self, url):
-        self.url = url
+        self.url = self.format(url)
         self.title = ''
+
+    '''
+    inputs:
+    url (str) URL to video
+
+    outputs:
+    url (str) Formatted video url
+    '''
+    def format(self, url):
+        if url.startswith('www'):
+            url = url.replace('www', 'https://www')
+
+        # remove queries
+        return re.sub(r'\?(.*)','', url)
+
 
     '''
     Downloads Instagram video
