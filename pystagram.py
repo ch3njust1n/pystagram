@@ -16,7 +16,6 @@ class Instagram(object):
     '''
     def __init__(self, url):
         self.url = self.format(url)
-        self.title = ''
 
     '''
     inputs:
@@ -37,10 +36,10 @@ class Instagram(object):
     Downloads Instagram video
 
     inputs:
-    dest     (str, optional) Save destination. Defaults to current working directory.
+    dst      (str, optional) Save destination. Defaults to current working directory.
     filename (str, optional) Save filename
     '''
-    def download(self, dest='', filename=''):
+    def download(self, dst='', filename=''):
         try:
             resp = requests.get(os.path.join(self.url, '?__a=1'))
             resp.raise_for_status()
@@ -57,17 +56,50 @@ class Instagram(object):
 
         try:
             shortcode_media = resp.json()['graphql']['shortcode_media']
-            video_url = shortcode_media['video_url']
+            is_edge_media = 'edge_sidecar_to_children' in shortcode_media.keys()
+
             time_stamp = shortcode_media['taken_at_timestamp']
+                
+            if len(filename) == 0: 
+                filename = time_stamp 
+
+            if not is_edge_media:
+                if not shortcode_media['is_video']:
+                    return          
+                    
+                video_url = shortcode_media['video_url']                
+                self.retrieve(video_url, dst, filename)
+            else:
+                edges = shortcode_media['edge_sidecar_to_children']['edges']
+                dst_dir = os.path.join(dst, filename)
+
+                if not os.path.exists(dst_dir):
+                    os.makedirs(dst_dir)
+
+                for i, e in enumerate(edges):
+                    node = e['node']
+
+                    if not node['is_video']:
+                        continue
+
+                    self.retrieve(node['video_url'], dst_dir, f"{i}-{node['shortcode']}")
         except ValueError as e:
             raise Exception(e)
 
-        self.title = time_stamp if len(filename) == 0 else filename
+    
+    '''
+    Download video
 
-        if len(dest) == 0:
-            dest = os.getcwd()
+    inputs:
+    video_url (str) Video url to download
+    dst       (str) Directory to save to
+    filename  (str) Save file name
+    '''
+    def retrieve(self, video_url, dst, filename):
+        if len(dst) == 0:
+            dst = os.getcwd()
 
-        save_path = os.path.join(dest, f'{self.title}.mp4')
+        save_path = os.path.join(dst, f'{filename}.mp4')
 
         if not os.path.exists(save_path):
             try:
