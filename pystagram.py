@@ -60,7 +60,7 @@ class Instagram(object):
 
             time_stamp = shortcode_media['taken_at_timestamp']
                 
-            if len(filename) == 0: 
+            if filename is None or len(filename) == 0: 
                 filename = time_stamp 
 
             if not is_edge_media:
