@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: pystagram
+Version: 1.0.0
+Summary: Python 3 module for downloading Instagram videos
+Home-page: https://github.com/ch3njust1n/pystagram
+Author: Justin Chen
+Author-email: ch3njus@gmail.com
+License: MIT
+Project-URL: Bug Reports, https://github.com/ch3njust1n/pystagram/issues
+Description: 
+        # pystagram
+        
+        API for downloading Instagram videos. Can handle video single videos and edge media.
+        
+        Install
+        ```
+        git clone https://github.com/ch3njust1n/pystagram.git && cd pystagram
+        python setup.py build
+        sudo python setup.py install
+        ```
+        
+        Example
+        ```
+        from pystagram import Instagram
+        link = 'www.instagram.com/p/B8B9dYtgvDk/'
+        name = 'video'
+        gram = Instagram(link)
+        gram.download(dst='save_dir', filename=name)
+        ```
+        
+Keywords: instagram,download,video
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet
+Classifier: Topic :: Multimedia :: Video
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Terminals
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
