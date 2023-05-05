@@ -14,7 +14,7 @@ class Instagram(object):
     inputs:
     url (str) URL to video e.g. https://www.instagram.com/p/BSVHktjDn5m/
     '''
-    def __init__(self, url):
+    def __init__(self, url: str):
         self.url = self.format(url)
 
     '''
@@ -24,7 +24,7 @@ class Instagram(object):
     outputs:
     url (str) Formatted video url
     '''
-    def format(self, url):
+    def format(self, url: str) -> str:
         if url.startswith('www'):
             url = url.replace('www', 'https://www')
 
@@ -39,7 +39,7 @@ class Instagram(object):
     dst      (str, optional) Save destination. Defaults to current working directory.
     filename (str, optional) Save filename
     '''
-    def download(self, dst='', filename=''):
+    def download(self, dst:str='', filename:str=''):
         try:
             resp = requests.get(os.path.join(self.url, '?__a=1'))
             resp.raise_for_status()
@@ -95,7 +95,7 @@ class Instagram(object):
     dst       (str) Directory to save to
     filename  (str) Save file name
     '''
-    def retrieve(self, video_url, dst, filename):
+    def retrieve(self, video_url:str, dst:str, filename:str):
         if len(dst) == 0:
             dst = os.getcwd()
 
