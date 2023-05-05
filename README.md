@@ -6,7 +6,7 @@ Install
 ```
 git clone https://github.com/ch3njust1n/pystagram.git && cd pystagram
 python setup.py build
-sudo python setup.py install
+python setup.py install
 ```
 
 Example
