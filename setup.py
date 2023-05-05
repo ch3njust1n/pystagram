@@ -19,10 +19,16 @@ setup(
     author="Justin Chen",
     author_email="ch3njus@gmail.com",
     packages=["pystagram"],
-    package_data={"": ["LICENSE"],},
+    package_data={
+        "": ["LICENSE"],
+    },
     url="https://github.com/ch3njust1n/pystagram",
     license="MIT",
-    entry_points={"console_scripts": ["pystagram = pystagram.cli:main",],},
+    entry_points={
+        "console_scripts": [
+            "pystagram = pystagram.cli:main",
+        ],
+    },
     install_requires=["requests", "urllib3"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -50,8 +56,10 @@ setup(
     long_description=long_description,
     zip_safe=True,
     python_requires=">=3.6",
-    project_urls={
-        "Bug Reports": "https://github.com/ch3njust1n/pystagram/issues"
-    },
-    keywords=["instagram", "download", "video",],
+    project_urls={"Bug Reports": "https://github.com/ch3njust1n/pystagram/issues"},
+    keywords=[
+        "instagram",
+        "download",
+        "video",
+    ],
 )

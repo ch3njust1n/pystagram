@@ -1,6 +1,6 @@
-'''
+"""
 Pystagram is a module for downloading Instagram videos
-'''
+"""
 __title__ = "pystagram"
 __author__ = "Justin Chen"
 __license__ = "MIT License"
